@@ -16,31 +16,36 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
+import type { User } from '@prisma/client'
 
 type ProfileFormProps = {
-  user: {
-    name: string
-    email: string
-  }
-  onUpdate?: any
+  user: User
+  onUpdate: (name: string) => Promise<any>
 }
 
 const ProfileForm = ({ user, onUpdate }: ProfileFormProps) => {
+
+
   const [isLoading, setIsLoading] = useState(false)
   const initForm = useForm<z.infer<typeof EditUserProfileSchema>>({
     resolver: zodResolver(EditUserProfileSchema),
     mode: 'onChange',
     defaultValues: {
-      name: '',
-      email: '',
+      name: user.name || '',
+      email: user.email || '',
     },
   })
 
-  const onSubmit = () => { }
+  const onSubmit = async (data: z.infer<typeof EditUserProfileSchema>) => {
+    setIsLoading(true)
+    const response = await onUpdate(data.name)
+    setIsLoading(false)
+  }
 
   useEffect(() => {
     user && initForm.reset({ name: user.name, email: user.email })
   }, [user])
+
 
   return (
     <Form {...initForm}>

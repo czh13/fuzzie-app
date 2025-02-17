@@ -10,6 +10,7 @@ import { CheckIcon } from 'lucide-react'
 import Image from 'next/image'
 
 export default function Home() {
+  //WIP: remove fault IMAge for home page
   return (
     <main className="flex items-center justify-center flex-col">
       <Navbar />
@@ -44,7 +45,7 @@ export default function Home() {
       <section>
         <HeroParallax products={products}></HeroParallax>
       </section>
-      <section className="mt-[-500px]">
+      <section className="-mt-[500px]">
         <LampComponent />
         <div className="flex flex-wrap items-center justify-center flex-col md:flex-row gap-8 -mt-72">
           <CardContainer className="inter-var ">
@@ -193,3 +194,4 @@ export default function Home() {
     </main>
   )
 }
+

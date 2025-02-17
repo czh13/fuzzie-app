@@ -4,7 +4,7 @@ import * as LR from '@uploadcare/blocks'
 import { useRouter } from 'next/navigation'
 
 type UploadCareButtonProps = {
-  onUpload: (e: string) => any
+  onUpload: (url: string) => Promise<any>
 }
 
 LR.registerBlocks(LR)
@@ -29,7 +29,7 @@ const UploadCareButton = ({ onUpload }: UploadCareButtonProps) => {
     <div>
       <lr-config
         ctx-name="my-uploader"
-        pubkey="a9428ff5ff90ae7a64eb"
+        pubkey="a456450ef96e12cb60cc"
       />
 
       <lr-file-uploader-regular

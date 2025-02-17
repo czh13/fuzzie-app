@@ -8,8 +8,8 @@ import { useRouter } from 'next/navigation'
 
 type ProfilePictureProps = {
   userImage: string | null
-  onDelete?: any
-  onUpload: any
+  onUpload: (imagePath: string) => Promise<any>
+  onDelete: () => Promise<any>
 }
 
 const ProfilePicture = ({ userImage, onDelete, onUpload }: ProfilePictureProps) => {
@@ -24,12 +24,19 @@ const ProfilePicture = ({ userImage, onDelete, onUpload }: ProfilePictureProps) 
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       <p className="text-lg text-white">Profile Picture</p>
-      <div className="h-[30vh] flex flex-col items-start justify-center">
+      <div className="h-[30vh] flex flex-col items-center justify-center">
         {userImage ? <>
-          <div>
-            <Image src={userImage} alt="UserImage" fill></Image>
+          <div className='relative aspect-square rounded-full overflow-hidden w-16'>
+            <Image
+              src={userImage}
+              alt="User Avatar"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 60px,(max-width: 1200px) 80px,100px"
+              priority
+            />
           </div>
           <Button className="bg-transparent text-white/70 hover:bg-transparent hover:text-white" onClick={onRemoveProfileImage}>
             <X /> Remove Logo
