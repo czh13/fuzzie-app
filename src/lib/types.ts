@@ -1,4 +1,5 @@
 import type { ConnectionProviderProps } from "@/providers/connections-provider"
+import { useReducer } from "react"
 import { z } from "zod"
 
 export const EditUserProfileSchema = z.object({
@@ -61,7 +62,7 @@ export type EditorActions =
   | {
       type: "LOAD_DATA"
       payload: {
-        elements: EditorNode[]
+        elements: EditorNodeType[]
         edges: {
           id: string
           source: string
@@ -72,7 +73,7 @@ export type EditorActions =
   | {
       type: "UPDATE_NODE"
       payload: {
-        elements: EditorNode[]
+        elements: EditorNodeType[]
       }
     }
   | { type: "REDO" }
@@ -80,7 +81,7 @@ export type EditorActions =
   | {
       type: "SELECTED_ELEMENT"
       payload: {
-        element: EditorNode
+        element: EditorNodeType
       }
     }
 
