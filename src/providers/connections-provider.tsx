@@ -88,7 +88,6 @@ const InitialValues: ConnectionProviderProps = {
 }
 
 const ConnectionsContext = createContext(InitialValues)
-const { Provider } = ConnectionsContext
 
 export const ConnectionsProvider = ({ children }: ConnectionWithChildProps) => {
   const [discordNode, setDiscordNode] = useState(InitialValues.discordNode)
@@ -115,7 +114,7 @@ export const ConnectionsProvider = ({ children }: ConnectionWithChildProps) => {
     setWorkFlowTemplate,
   }
 
-  return <Provider value={values}>{children}</Provider>
+  return <ConnectionsContext.Provider value={values}>{children}</ConnectionsContext.Provider>
 }
 
 export const useNodeConnections = () => {
